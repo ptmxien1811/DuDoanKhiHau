@@ -7,7 +7,7 @@ def connect_to_mysql():
         connection = mysql.connector.connect(
             host='localhost',        # hoặc '127.0.0.1'
             user='root',             # tên người dùng MySQL
-            password='Ntnn1009@',    # mật khẩu MySQL (chú ý viết đúng biến là password)
+            password='Ntnn1009@',    # mật khẩu MySQL
             database='demo',         # tên cơ sở dữ liệu
             port=3306                # cổng mặc định của MySQL
         )
@@ -15,7 +15,8 @@ def connect_to_mysql():
         # Kiểm tra kết nối
         if connection.is_connected():
             print("✅ Kết nối MySQL thành công!")
-            db_info = connection.get_server_info()
+            db_info = connection.server_info
+
             print("Phiên bản MySQL:", db_info)
 
             cursor = connection.cursor()

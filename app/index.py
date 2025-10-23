@@ -3,8 +3,7 @@ from flask import jsonify
 app = Flask(__name__)
 
 
-from flask import Flask, render_template, jsonify
-
+from flask import Flask, render_template, jsonify, request
 app = Flask(__name__)
 
 # Trang chủ
