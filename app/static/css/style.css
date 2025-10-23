@@ -1,0 +1,137 @@
+/* ====== Cấu hình tổng thể ====== */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f3f8fc;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ====== Thanh điều hướng ====== */
+.navbar {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.nav-link {
+    color: #ddd !important;
+    transition: 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #fff !important;
+    text-decoration: underline;
+}
+
+/* ====== Phần nội dung chính ====== */
+main {
+    flex: 1;
+    padding: 40px 20px 100px; /* chừa chỗ cho footer cố định */
+    text-align: center;
+}
+
+main h1 {
+    font-size: 2rem;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+main p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* ====== Form lọc ====== */
+section h3 {
+    color: #198754;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+input.form-control {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+input.form-control:focus {
+    border-color: #0078d7;
+    box-shadow: 0 0 5px rgba(0, 120, 215, 0.3);
+}
+
+/* ====== Nút ====== */
+button,
+.btn {
+    border-radius: 8px !important;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #157347 !important;
+}
+
+.btn-primary:hover {
+    background-color: #005fa3 !important;
+}
+
+/* ====== Kết quả hiển thị (thẻ ảnh) ====== */
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-body {
+    background: white;
+    padding: 15px;
+}
+
+.card-title {
+    color: #0078d7;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    color: #555;
+}
+
+/* ====== Footer ====== */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+footer a.footer-link {
+    color: #66b3ff;
+    text-decoration: none;
+}
+
+footer a.footer-link:hover {
+    text-decoration: underline;
+}

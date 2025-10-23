@@ -1,38 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Trang Chủ</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <meta charset="utf-8" />
+  <title>Dự Đoán Khí Hậu</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- main.js tải defer -->
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </head>
-
 <body>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="javascript:void(0)">Logo</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mynavbar">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Link</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="text" placeholder="Search">
-        <button class="btn btn-primary" type="button">Search</button>
-      </form>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">🌤️ Dự Đoán Khí Hậu</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link active" href="/">Trang chủ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gioithieu">Giới thiệu</a></li>
+        </ul>
+
+        <!-- Search input (nhắn tới JS) -->
+        <form id="searchForm" class="d-flex" onsubmit="return false;">
+          <input id="searchInput" class="form-control me-2" type="search" placeholder="Tìm cảm biến, vị trí..." aria-label="Search">
+          <select id="filterLocation" class="form-select me-2">
+            <option value="">Tất cả vị trí</option>
+            <option value="Quận 1">Quận 1</option>
+            <option value="Quận 3">Quận 3</option>
+            <option value="Bình Thạnh">Bình Thạnh</option>
+          </select>
+          <button id="btnSearch" class="btn btn-primary">Tìm</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-light text-center p-5 mb-4 shadow-sm">
+    <h1 class="display-5">Chào mừng đến với hệ thống Dự Đoán Khí Hậu</h1>
+    <p class="lead text-muted">Ứng dụng giúp dự đoán và giám sát chất lượng không khí.</p>
+  </header>
+
+  <main class="container mb-5">
+    <section id="gioithieu" class="mb-5">
+      <h2 class="text-primary">Giới thiệu</h2>
+      <p>Hệ thống sử dụng dữ liệu cảm biến và mô hình ML để dự đoán và cảnh báo.</p>
+    </section>
+
+    <!-- Controls: search + quick filters -->
+    <section class="mb-4">
+      <div class="row g-2 align-items-center">
+        <div class="col-auto">
+          <label class="form-label">PM2.5 ≥</label>
+        </div>
+        <div class="col-auto">
+          <input id="minPm" type="number" class="form-control" placeholder="0" min="0">
+        </div>
+        <div class="col-auto">
+          <button id="btnFilter" class="btn btn-outline-secondary">Áp dụng bộ lọc</button>
+        </div>
+        <div class="col text-end">
+          <small class="text-muted">Kết quả: <span id="countResult">0</span></small>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid cards: sẽ được JS tạo động -->
+    <section>
+      <div id="cardsRow" class="row g-4">
+        <!-- JS sẽ render card tại đây -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-light text-center py-3">
+    <small>© 2025 Dự Đoán Khí Hậu</small>
+  </footer>
+
+  <!-- Modal xem ảnh lớn -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-body p-0">
+          <img id="modalImg" src="" alt="Ảnh cảm biến" style="width:100%;height:auto;display:block;">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
+
 </body>
 </html>
