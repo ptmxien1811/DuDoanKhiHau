@@ -1,0 +1,19 @@
+{
+  "locations": [
+    "Quận 1",
+    "Quận 3",
+    "Bình Thạnh",
+    "Thủ Đức"
+  ],
+  "sensor_types": [
+    "PM2.5",
+    "Tiếng ồn",
+    "Nhiệt độ",
+    "Độ ẩm"
+  ],
+  "quality_levels": [
+    "Tốt",
+    "Trung bình",
+    "Xấu"
+  ]
+}
