@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Giới thiệu</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">Trang chủ</a> |
+        <a href="/about">Giới thiệu</a>
+    </nav>
+
+    <main>
+        <h1>Giới thiệu hệ thống dự đoán chất lượng không khí</h1>
+        <p>
+            Dự án này được phát triển nhằm theo dõi và dự đoán chất lượng không khí
+            bằng cách thu thập dữ liệu từ cảm biến, lưu trữ trong SQL Server và hiển thị
+            trực quan trên giao diện web.
+        </p>
+
+        <section class="about-section">
+            <img src="{{ url_for('static', filename='images/airquality.jpg') }}" alt="Air Quality">
+            <p>Ứng dụng kết hợp Flask backend và giao diện Bootstrap để tạo trải nghiệm hiện đại, thân thiện.</p>
+        </section>
+    </main>
+
+    <footer class="moving-footer">
+        <div class="footer-text">
+            © <span id="year"></span> Dự án Dự đoán chất lượng không khí
+        </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

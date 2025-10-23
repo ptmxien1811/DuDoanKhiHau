@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- main.js tải defer -->
@@ -78,9 +78,11 @@
     </section>
   </main>
 
-  <footer class="bg-dark text-light text-center py-3">
-    <small>© 2025 Dự Đoán Khí Hậu</small>
-  </footer>
+  <footer class="moving-footer">
+  <div class="footer-text">
+    © <span id="year"></span> Dự Đoán Khí Hậu
+  </div>
+</footer>
 
   <!-- Modal xem ảnh lớn -->
   <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
@@ -95,6 +97,9 @@
       </div>
     </div>
   </div>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>

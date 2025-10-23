@@ -6,8 +6,9 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template("index.html")
-
-
+@app.route('/about')
+def about():
+    return render_template('about.html')
 def api_sensors():
     data = [
         {"id": 1, "name": "Cảm biến 1", "location": "Quận 1", "pm25": 45, "noise": 62, "timestamp": "2025-10-23 10:00",
