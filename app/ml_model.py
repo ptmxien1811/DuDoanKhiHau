@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.linear_model import LinearRegression
-from db_connection import get_connection
+from database.db_connection import get_connection
 
 def train_and_predict():
     conn = get_connection()
